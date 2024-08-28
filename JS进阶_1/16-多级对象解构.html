@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // const pig = {
+    //   name: '佩奇',
+    //   family: {
+    //     mother: '猪妈妈',
+    //     father: '猪爸爸',
+    //     sister: '乔治'
+    //   },
+    //   age: 6
+    // }
+    // // 多级对象解构
+    // const { name, family: { mother, father, sister } } = pig
+    // console.log(name)
+    // console.log(mother)
+    // console.log(father)
+    // console.log(sister)
+
+    // 3. 多级对象解构
+    const person = [
+      {
+        name: 'me',
+        family: {
+          mom: 'mother',
+          dad: 'father',
+          bro: 'brother'
+        },
+        age: 6
+      }
+    ]
+    const [{ name, family: { mom, dad, bro } }] = person
+
+    console.log(name)
+    console.log(family)  // undefined， 因为已被解构; 除非去掉， 然后会返回 family 对象
+    console.log(mom)
+    console.log(dad)
+    console.log(bro)
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(Math.ceil(1.1))  // 2, 向上取整
+        console.log(Math.floor(1.1)) // 1, 向下取整
+
+        console.log(Math.round(1.5))  // 2, 四舍五入(整数)
+        console.log(Math.round(-1.5))  // -1, 四舍五入(整数)
+        console.log(Math.round(-1.51))  // -2, 四舍五入(整数)
+
+        console.log(Math.trunc(1.1))  // 1, 去掉小数部分
+
+        console.log(Math.max(1, 2, 3))  // 最大值
+        console.log(Math.min(1, 2, 3))  // 最小值
+
+        console.log(Math.pow(2, 3))     // 8, 幂运算-次方
+        console.log(Math.pow(8, 1/3))   // 2, 幂运算-开方
+
+        console.log(Math.sqrt(4))       // 2, 开平方
+
+        console.log(Math.abs(-1))       // 1, 绝对值
+
+        console.log(Math.random())  // 随机数, [0, 1)
+        console.log(Math.random() * 10 + 1)  // 随机数, [0, 10]
+        console.log(Math.random() * 5) + 5  // 随机数, [5, 10)
+        console.log(Math.floor(Math.random() * 10 + 1))  // 随机整数, [0, 10]
+
+        let arr = ['red', 'green', 'blue']  // 随机抽取数组元素
+        let random = Math.floor(Math.random() * arr.length)  // [0, 1) * 3 = [0, 3) ⊆ [0, 1, 2]
+        console.log(arr[random])
+
+        // splice(起始位置下标, 删除元素数量)  > 在数组中添加/删除项目，然后返回被删除的项目。
+        arr.splice(2, 1)  // 删除数组中的第3个元素
+        console.log(arr)
+
+        // 函数, 取得从 N 到 M 的随机整数
+        function getRandom(N, M) {
+            return Math.floor(Math.random() * (M - N + 1)) + N
+        }
+        console.log(getRandom(4, 8))  // [0, 5) + 4 = [4, 9) ⊆ [4, 8]
+    </script>
+</body>
+</html>

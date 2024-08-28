@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 获得时间戳
+    // 1. getTime()
+    const date = new Date()
+    console.log(date.getTime())
+
+    // 2. +new Date()
+    console.log(+new Date())  // 本质是把 new Date 从 字符串 转换为 数字型
+    console.log(+new Date('2022-4-1 18:30:00'))  // 得到 指定时间 的时间戳
+
+    // 3. Date.now()
+    console.log(Date.now()); // 只能返回 当前时间戳
+
+
+    // 通过 getDay() 返回星期几
+    const arr = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
+    // const date = new Date()
+    console.log(arr[new Date().getDay()])
+  </script>
+</body>
+
+</html>

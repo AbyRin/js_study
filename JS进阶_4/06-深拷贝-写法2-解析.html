@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const object = {
+        name: 'aby',
+        age: 18,
+        say() {
+            console.log('hello')
+        },
+        arr: [[1, 2], 3, 4],
+        family: {
+            father: 'dad',
+        }
+    }
+
+    // 递归实现 深拷贝函数
+    function deepCopy(oldObj, deep) {  // deep 表示是否深拷贝
+        let obj = {}
+        if(oldObj instanceof Array) {
+            obj = []
+        }
+        // 如果一个对象的属性值是对象类型，但它不在当前对象的属性，而是从原型链中继承而来
+        /*  举例
+        function Person() {
+            head: {
+                eye: 2
+            }
+        }
+        
+        function Woman() {
+        
+        }
+        Woman.prototype = new Person()
+        Woman.prototype.constructor = Woman
+        const mom = new Woman()
+
+        Woman.prototype.baby = function () {
+            console.log('生子')
+        }
+        */
+        
+        // 那么对该属性的访问可能会导致错误。
+        // 因为 deepCopy 函数只考虑了当前对象的属性，而没有考虑原型链上的属性
+
+        // 解决方法：
+        // 在遍历对象属性之前，检查对象的原型
+        // 我们可以使用 Object.getPrototypeOf 方法来获取对象的原型链，然后遍历原型链上的属性
+        let prototype = Object.getPrototypeOf(oldObj);
+        for (let key in oldObj) {
+            let value = oldObj[key]
+            // 然后使用 hasOwnProperty 方法检查属性是否属于当前对象，而不是从原型链中继承而
+            // 这样，我们就可以确保只拷贝当前对象中的属性，而不会拷贝原型链上的属性
+            if (prototype.hasOwnProperty(key)) {
+                obj[key] = (!!deep && typeof value === 'object' && value !== null) ? deepCopy(value, deep) : value;
+                // !! 操作符只能应用于布尔值，遇到非布尔值会尝试转换为 布尔值，此处确保 deep 作为布尔值传递
+            }
+        }
+        return obj
+    }
+    
+    // 测试
+    const test = deepCopy(object, true)
+    object.arr[0].push(5)
+    console.log(object)
+
+  </script>
+</body>
+
+</html>

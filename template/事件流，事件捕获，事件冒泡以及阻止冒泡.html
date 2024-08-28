@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(255, 128, 128);
+        }
+        .son {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(128, 255, 128);
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+
+    <ul>
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+        <li>04</li>
+        <li>05</li>
+        <p>我不要变色</p>
+    </ul>
+
+    <script>
+        // 语法
+        // DOM.addEventListener(事件类型, 事件处理函数, 是否使用捕获机制)
+        // DOM.addEventListener(event, function(){}, useCapture)
+        // 第三个参数默认为false。传入 true 表示触发捕获阶段，输入 false 表示触发 冒泡阶段
+
+        // const fa = document.querySelector('.father')
+        // const son = document.querySelector('.son')
+        // document.addEventListener('click', function(){
+        //     alert('Here is grandpa.')  // 随便点哪里都会弹出 对话框
+        // })
+        // fa.addEventListener('click', function(){
+        //     alert('Here is father.')
+        // })
+        // son.addEventListener('click', function(e){
+        //     alert('Here is son.')
+        //     e.stopPropagation()  // 阻止冒泡
+        // })
+
+        // 阻止冒泡 - 语法
+        // 事件对象.stopPropagation()
+
+        // 事件委托
+        // 案例: 点击每个 li, 其文字变红色
+        // 1. 获得父元素
+        const ul = document.querySelector('ul')
+        ul.addEventListener('click', function(e){
+            // this.style.color = 'red'  // 不可用, 因为绑定在了父元素上, 会导致全部 li 都变样式
+            // e.target.style.color = 'red'  // 可用, 但可以进一步改善
+
+            // 改善: 只有点击 li 才会改变样式
+            if(e.target.tagName === 'LI'){
+                e.target.style.color = 'red'
+            }
+
+        })
+
+
+        
+    </script>
+</body>
+</html>

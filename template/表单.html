@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="" value="电脑">
+
+    <!-- 禁用 -->
+    <!-- <button disabled>点击</button> -->
+    <button>点击2</button>
+
+    <div data-id="1" data-spm="abc">1</div>
+    <div data-id="2">2</div>
+    <div data-id="3">3</div>
+    <div data-id="4">4</div>
+    <div data-id="5">5</div>
+
+    <script>
+        // 自定义属性: 以 data- 开头(如 data-id)
+        const one = document.querySelector('div')
+        console.log(one.dataset.id) // dataset 是一个集合, 1
+        console.log(one.dataset.spm) // abc
+
+
+
+
+        // 表单.value // 获取表单的值
+        // 表单.value = 值 // 设置表单的值
+        // 表单.type = 类型  // 设置表单的类型, 如 text, password, checkbox 等
+
+        // 表单.name = 'username'
+        // 表单.id = 'username'
+
+        // 获取元素
+        const username = document.querySelector('input')
+        // 获取值
+        console.log(username.value)  // 电脑
+        console.log(username.innerHTML)  // 无法通过 innerHTML 获取表单内容
+        // 设置表单的值
+        username.value = '手机'
+        // 设置表单的类型
+        username.type = 'checkbox'
+
+        // 获取
+        const ipt = document.querySelector('input')
+        ipt.checked = true
+        // ipt.checked = 'true'  // 不提倡使用。checked 只接受布尔值, 空字符串会隐式转换为 false, 其他会变 true。
+
+        const button = document.querySelector('button')
+        console.log(button.disabled)  // (disabled)默认false, 不禁用
+        button.disabled = true  // 禁用
+
+
+        
+
+
+    </script>
+</body>
+</html>

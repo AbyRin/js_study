@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+</head>
+<body>
+    <form action="http://www.itcast.cn">
+        <input type="submit" name="" id="" value="免费注册">
+    </form>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(e) {
+            // 阻止默认行为
+            e.preventDefault()
+        })
+    </script>
+
+    <a href="http://www.baidu.com">baidu</a>
+    
+    <script>
+        const a = document.querySelector('a');
+            a.addEventListener('click', function(e) {
+                e.preventDefault()
+        })
+    </script>
+</body>
+</html>

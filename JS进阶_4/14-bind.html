@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>发送短信</button>
+  <script>
+    const obj = {
+      age: 18
+    }
+    function fn() {
+      console.log(this)
+    }
+
+    // 1. bind() 不会调用函数 
+    // 2. 能改变this指向
+    // 3. 返回值是个函数, 但其 this 指向 更改的obj
+
+    // 使用场景：只想改变 this指向，不想调用函数时
+
+    const fun = fn.bind(obj)
+    console.log(fun) // 返回 fn(), 但 this 指向 obj
+    fun()  // 调用 --> {age: 18}
+
+
+    // 案例需求: 有一个按钮，点击里面就禁用，2秒钟之后开启（分析：函数不立刻调用）
+    document.querySelector('button').addEventListener('click', function () {
+      // 禁用按钮
+      this.disabled = true
+      setTimeout(function () {
+        // 定时器 this 指向 window, 但 window 无法开启定时器, 故要将 this 改为 btn, 如下：
+        this.disabled = false  // 错误写法-可改写
+        // btn.disabled = false  // 正解 1
+
+        // 正解 2：改为箭头函数，this 指向上一级作用域 btn
+
+      }.bind(btn), 2000)
+      // 正解 3 - 改写以上错误写法：加 bind(btn)，把 定时器的 this 改向 btn，且不会立刻调用定时器...
+      // ...或者加 bind(this), 因为此处 this 会指向 定时器的调用者，也即 btn
+    })
+  </script>
+</body>
+
+</html>

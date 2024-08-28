@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 逻辑与
+        console.log(1 && 0)     // 0，有假返假
+        console.log(1 && 2)     // 2，全真返右真
+        // 左假返假，逻辑中断
+        console.log(0 && 1)     // 0
+        console.log(0 && null)  // 0
+        
+        // 逻辑或
+        console.log(0 || 1)     // 1，有真返真
+        console.log(0 || null)  // null，全假返右假
+        // 左真返真，逻辑中断
+        console.log(1 || 0)     // 1
+        console.log(1 || 2)     // 1
+    </script>
+</body>
+</html>

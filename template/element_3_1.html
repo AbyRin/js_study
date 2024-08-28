@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .aqua {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(255, 173, 173);
+            color: aqua;
+            
+            font-size: 25px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .mea {
+            color: yellow;
+            background-color: rgb(22, 255, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="aqua">Aqua</div>
+    <script>
+        // 元素.classList.add('类名')  // 添加一个类
+        // 元素.classList.remove('类名')  // 删除一个类
+        // 元素.classList.toggle('类名')  // 切换一个类: 存在就删除，不存在就添加
+
+        // 通过 classList 添加
+        // 获取元素
+        const aqua = document.querySelector('.aqua');
+        // 修改样式
+        // aqua.classList.add('mea');
+
+        // 切换样式
+        aqua.classList.toggle('mea');
+
+        // 自行复习，修改文字内容
+        aqua.innerText = 'Mea';
+    </script>
+</body>
+</html>

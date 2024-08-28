@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: inline-block;
+            /* width: 200px; */
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div>123456789</div>
+    <script>
+        // resize事件: 浏览器窗口 大小变化时触发
+        // window.addEventListener('resize', function() {
+        //     console.log('1')
+        // })
+
+        // clinetWidth、clientHeight 获取元素的可见部分高宽(不包含边框、margin、滚动条)
+        const div = document.querySelector('div')
+        console.log(div.clientWidth)
+
+    </script>
+</body>
+</html>

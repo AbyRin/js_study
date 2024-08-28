@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    .box {
+      width: 500px;
+      height: 500px;
+      background-color: #ccc;
+      color: #fff;
+      text-align: center;
+      font-size: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script>
+    const box = document.querySelector('.box')
+    let i = 1  // 让这个变量++
+    // 鼠标移动函数
+    function mouseMove() {
+      box.innerHTML = ++i;
+      console.log("触发事件");
+      // 如果里面存在大量操作 dom 的情况，可能会卡顿
+    }
+    
+    // 防抖：只触发最后一次
+    // 核心思想: 利用 setTimeout 定时器来实现
+    // 1. 声明定时器变量
+    // 2. 每次鼠标移动(事件触发)的时候都要先判断 是否有定时器，如果有 先清除以前的定时器
+    // 3. 如果没有定时器，则开启定时器，存入到定时器变量里面
+    // 4. 定时器里面写函数调用
+
+    function debounce(fn, t) {
+      let timer = null;
+      return function() {
+        // 如果有定时器就清除
+        if (timer) {
+          clearTimeout(timer);
+        }
+        // 开启定时器
+        timer = setTimeout(function() {
+          fn();  // 调用
+        }, t)
+      }
+    }
+
+    box.addEventListener('mousemove', debounce(mouseMove, 200))  // 调用函数
+
+  </script>
+</body>
+
+</html>

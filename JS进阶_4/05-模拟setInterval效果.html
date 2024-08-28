@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div></div>
+
+  <!-- 利用 递归函数 和 延时定时器 setTimeout 实现：模拟 间歇函数/定时器 setInterval 的效果 -->
+  <script>
+    function getTime() {
+      document.querySelector('div').innerHTML = new Date().toLocaleString()  // 输出当前时间
+      setTimeout(getTime, 1000)
+    }
+    getTime()
+  </script>
+</body>
+
+</html>

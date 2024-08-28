@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(255, 238, 106);
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        // 对象.style.样式名 = 值;
+
+        // 获取元素
+        const box = document.querySelector('.box');
+        // 修改样式属性
+        box.style.width = '300px';
+
+        // 样式属性若含有“-”符号，采用小驼峰命名法即可
+        box.style.backgroundColor = 'rgb(255, 163, 163)';
+
+        box.style.border = '3px solid black';
+        box.style.borderTop = '10px solid red';
+    </script>
+
+    <script>
+        // body 是唯一标签，故可以直接获取
+        // document.body.style
+
+    </script>
+</body>
+</html>

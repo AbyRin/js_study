@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        let 对象1 = {}
+        let 对象2 = new Object()
+        */
+
+        /*
+        let 对象 = {
+            属性名1: 属性值,  // 属性，依附在对象上的变量
+            属性名n: 属性值,
+
+            方法值1: 函数,
+            方法值n: 函数
+        }
+        */
+
+        // 实例
+        let student = {
+            name: 'mike',
+
+            calculate: function (x, y) {
+                return(x + y)
+            }
+        }
+
+        cal = student.calculate(1, 2)  // 调用方法
+        console.log(cal)  // 3
+
+        console.log('--------------------------------------------------------')
+        
+        let phone = {
+            name: 'iPhone 4',
+            weight: '0.5kg',
+            length: '20cm'
+        }
+
+
+        //  操作对象的属性
+        // 查
+        console.log(phone.name)
+        console.log(phone['name'])
+        // 改
+        console.log(phone.length = '10cm')
+        // 增
+        console.log(phone.color = 'pink')
+        // 删
+        delete phone.weight
+
+        console.log(phone)
+
+        console.log('--------------------------------------------------------')
+        
+        let obj = {
+            name: 'Amy',
+            age: 18,
+            hobby: 'paint'
+        }
+
+        // 遍历，key是属性名
+        for (let key in obj) {
+            console.log(key)
+            console.log(obj[key])
+        }
+        
+    </script>
+</body>
+</html>

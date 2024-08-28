@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(255, 173, 173);
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        // 事件类型
+        const div = document.querySelector('div');
+        // 1. 鼠标事件
+        // 鼠标经过
+        div.addEventListener('mouseenter', function () {
+            console.log('鼠标进入')
+        })
+        //鼠标离开
+        div.addEventListener('mouseleave', function () {
+            console.log('鼠标离开')
+        })
+        // 2. 焦点事件
+        // 3. 键盘事件
+        // 4. 文本事件
+
+        // 表单事件
+        // 窗口事件
+
+    </script>
+</body>
+</html>

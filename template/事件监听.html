@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box_big {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(255, 167, 167);
+        }
+        .box_small {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(136, 255, 167);
+        }
+    </style>
+</head>
+<body>
+    <button>点击</button>
+    <div class="box_big">
+        <div class="box_small"></div>
+    </div>
+
+    <h2>案例3: 随机点名</h2>
+    <div class="box">
+        <p>名字是:</p>
+        <div class="qs">这里显示姓名</div>
+    </div>
+    <div class="btns">
+        <button class="start">start</button>
+        <button class="end">end</button>
+    </div>
+
+
+    <script>
+        // 语法
+        // 元素对象.addEventListener('事件类型', 要执行的函数)
+
+        // 案例 1: 点击按钮，弹出一个对话框
+        // 事件源
+        const btn = document.querySelector('button')
+        // 事件类型
+        btn.addEventListener('click', function(){  // 事件处理函数
+            alert('hello')
+        })
+
+        
+        // 案例 2: 关闭广告
+        // 事件源
+        const box_big = document.querySelector('.box_big')
+        // 关闭大盒子
+        const box_small = document.querySelector('.box_small')
+        // 事件监听
+        box_big.addEventListener('click', function(){
+            box_small.style.display = 'none'
+        })
+
+
+        // 自己已重写
+        // 案例 3: 随机点名
+        // 数据数组
+        const arr = ['张三', '李四', '王五', '赵六', '田七']
+
+        // 获取start按钮
+        const start = document.querySelector('.start')
+        // 获取end按钮
+        const end = document.querySelector('.end')
+        // 初始end按钮为禁用
+        end.disabled = true  // 禁用开始按钮
+
+        // 声明随机数为全局变量
+        let random = 0
+
+        // 声明定时器ID，并设初始为0
+        let timerId = 0
+
+        // 1. 开始按钮模块
+        const qs = document.querySelector('.qs')
+        // const qa = document.createElement('a')
+
+        // 1.2 添加点击事件
+        start.addEventListener('click', function(){
+            timerId = setInterval (function() {
+                // 获取随机数
+                random = parseInt(Math.random() * arr.length)
+                qs.innerHTML = arr[random]  // 将抽取结果渲染
+                // qa.innerHTML = arr[random]
+            }, 35);
+
+            start.disabled = true  // 禁用start按钮
+            end.disabled = false  // 开放end按钮
+
+            // 如果数组里只剩一个值, 就禁用所有按钮, 并展示处最后一个值
+            if (arr.length === 1) {
+                start.disabled = end.disabled = true  // 禁用start、end按钮
+            }
+        })
+
+
+        //2. 结束按钮模块
+        end.addEventListener('click', function() {
+            clearInterval(timerId)
+            // 抽出一个后, 删除掉该数组元素
+            arr.splice(random, 1)  // 从random开始, 删掉一个数组元素
+            console.log(arr)
+            start.disabled = false  // 开放start按钮
+            end.disabled = true  // 禁用end按钮
+        })
+
+    </script>
+</body>
+</html>

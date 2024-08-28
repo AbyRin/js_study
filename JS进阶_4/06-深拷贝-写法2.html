@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const object = {
+        name: 'aby',
+        age: 18,
+        say() {
+            console.log('hello')
+        },
+        arr: [[1, 2], 3, 4],
+        family: {
+            father: 'dad',
+        }
+    }
+
+    // 递归实现 深拷贝函数
+    function deepCopy(oldObj, deep) {  // deep 表示是否深拷贝
+        let obj = {}
+        if(oldObj instanceof Array) {
+            obj = []
+        }
+        for (let key in oldObj) {
+            let value = oldObj[key]
+            obj[key] = (!!deep && typeof value === 'object' && value !== null) ? deepCopy(value, deep) : value;
+        }
+        return obj
+    }
+    
+    // 测试
+    const test = deepCopy(object, true)
+
+
+  </script>
+</body>
+
+</html>

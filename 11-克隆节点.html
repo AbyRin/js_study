@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+
+  <script>
+    // 克隆节点元素: 深克隆
+    元素.cloneNode(布尔值)
+    
+    // 默认为false, 浅克隆, 只克隆标签; 为true时是深克隆, 克隆所有子元素
+
+    // 1. 获取父元素
+    const ul = document.querySelector('ul')
+
+    // 3. 克隆 并 追加节点
+    ul.appendChild(ul.children[0].cloneNode(true))
+
+  </script>
+</body>
+
+</html>

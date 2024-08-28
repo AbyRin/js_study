@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 案例: 嵌套循环-乘法表
+        for (let i = 1; i <= 9; i++) {
+            for (let j = 1; j <= i; j++) {
+                document.write(`<span>${i} x ${j} = ${i * j}</span>`)
+            }
+            document.write(`<br>`)
+        }
+    </script>
+    <style>
+        span {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 0;
+            margin: 2px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 2px rgb(91, 76, 76);
+            background-color: #f17f7f;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+
+<body>
+    <script>
+        // 数组声明语法
+        // let 数组名 = [数据1, 数据2, ... 数据n]
+        // let arr = new Array(数据1, 数据2, ... 数据n)
+
+        // 案例: 数组求和、平均值
+        let avr =0
+        let sum =0
+        let arr = [1, 2, 3, 4, 5]
+        for (let i = 0; i < arr.length; i++) {
+            sum += arr[i]
+        }
+        console.log(`数组的和是${sum}`)
+        console.log(`数组的平均值是${sum / arr.length}`)
+
+        // 数组求最大值、最小值
+        let arr2 = [2, 6, 78, 30, 52]
+        let max = arr2[0]
+        let min = arr2[0]
+        for (let i = 1; i < arr2.length; i++) {
+            max = max > arr2[i] ? max : arr2[i]
+            min = min < arr2[i] ? min : arr2[i]
+        }
+        console.log(`数组的最大值是${max}`)
+        console.log(`数组的最小值是${min}`)
+
+        // 操作数组-增删改查
+        let arr3 = []
+
+        // 改: 给数组添加元素Psee
+        arr3[0] = 1
+        arr3[1] = null
+        // 改: 给所有数组元素后面添加一个“hello”
+        for (let i = 0; i < arr3.length; i++) {
+            arr3[i] += 'hello'
+        }
+        console.log(arr3)
+
+
+        // 增: 给数组添加元素
+        // arr.push(新增元素)     //新增元素到数组末尾
+        // arr.unshift(新增元素)  //新增元素到数组开头
+        console.log(arr3.push('0', '2'))  // 返回新数组长度4
+        console.log(arr3.unshift('0', '2'))  // 返回新数组长度6
+        console.log(arr3)
+
+        // 删: 删除数组最后一个元素
+        // arr.pop()    //删除数组末尾一个元素并返回值
+        // arr.shift()  //删除数组开头一个元素并返回值
+        // arr.splice(删除位置, 删除个数)  //删除数组中指定位置的元素
+        // 若不指定删除个数，默认从指定位置一直删除到末尾
+        arr3.pop()
+        arr3.shift()
+        console.log(arr3)
+
+        arr3.splice(1, 2)
+        console.log(arr3)
+        
+        // 案例: 数组筛选
+        let arr5 = [2, 6, 1, 77, 89, 45, 36]
+        let newArr = []
+        for (let i = 0; i < arr5.length; i++) {
+            if (arr5[i] > 10) {
+                newArr.push(arr5[i])
+            }
+        }
+        console.log(newArr)
+
+        // 案例-生成柱形图
+        let arr_zx = []
+
+        for (let i =1; i <= 4; i++) {
+            arr_zx.push(prompt(`请输入第${i}季度的销售额:`))
+        }
+        // console.log(arr_zx)
+        
+        // 绘制图像
+        document.write(`<div class="box">`)
+        for (let i = 0; i < arr_zx.length; i++) {
+            document.write(`
+            <div style="height: ${arr_zx[i]}px;">
+                <span>${arr_zx[i]}</span>
+                <span>第${i+1}季度</span>
+            </div>
+            `)
+        }
+        document.write(`</div>`)
+    </script>
+
+    <style>
+        .box {
+            width: 1000px;
+            margin: 50px auto;
+
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            text-align: center;
+
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+        .box >div {
+            display: flex;
+            width: 100px;
+
+            background-color: pink;
+
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .box div span {
+            font-size: 20px;
+            margin-top: -20px;
+        }
+
+    </style>
+</body>
+</html>

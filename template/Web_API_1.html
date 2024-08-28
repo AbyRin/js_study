@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>111</div>
+    <div class="box_class">222</div>
+    <div id="box_id">333</div>
+    <p>导航栏</p>
+    <ul>
+        <li>测试a</li>
+        <li>测试b</li>
+        <li>测试c</li>
+    </ul>
+
+    <script>
+        // 获取一个 DOM元素
+        const div1 = document.querySelector('div')  // 获取匹配的第一个元素
+        console.log(div1)  // 打印 dom对象
+
+        // 也可以用 class 和 id
+        const div2 = document.querySelector('.box_class')  // class = "box_class"
+        console.log(div2)
+        const div3 = document.querySelector('#box_id')  // id = "box_id"
+        console.log(div3)
+
+        // 更复杂的css选择器
+        const li = document.querySelector('ul li:first-child')  // 获取第一个 li
+        console.log(li)
+
+        const lis = document.querySelectorAll('ul li')  // querySelectorAll, 获取所有 li
+        console.log(lis)
+        console.log('-----------------------------------------------')
+    </script>
+
+    <script>
+        const li_all = document.querySelectorAll('ul li')  // querySelectorAll, 获取所有 li
+        for (let i = 0; i < li_all.length; i++) {
+                console.log(li_all[i])
+            }
+        
+            const p = document.querySelectorAll('p')  // 获取 NodeList 数组
+            // console.log(p)
+            p[0].style.color = 'red'
+
+            console.log('-----------------------------------------------')
+    </script>
+
+    <script>
+        // tip: id 不可以重复, class 可以重复
+        document.getElementById('box_id')  // 根据 id 获取[一个]元素
+        document.getElementsByClassName('box_class')  // 根据 class 获取元素，获取页面[所有]类名为'box'的
+        document.getElementsByTagName('div')  // 根据 标签 获取一类元素, 获取页面所有div
+    </script>
+
+    <div class="text_box">文字内容</div>
+    <script>
+        // 获取元素
+        const text_box = document.querySelector('.text_box')
+ 
+        text_box.innerText = '修改后的文字内容'  // 纯文本, 不解析标签
+
+        text_box.innerHTML = '<strong>修改后的文字内容</strong>'  // 解析标签
+    </script>
+
+
+    <!-- 案例: 抽奖 -->
+    <div class="wrapper">
+        <strong>抽奖</strong>
+        <p>一等奖：<span id="one"></h>
+        <p>二等奖：<span id="two"></h>
+        <p>三等奖：<span id="three"></h>
+    </div>
+
+    <script>
+        // 1.声明数组
+        const personArr = ['张三', '李四', '王五', '赵六', '田七']
+
+        // 2.先做一等奖
+        // 2.1随机数下标
+        const random = Math.floor(Math.random() * personArr.length)
+        // 2.2获取One元素
+        const one = document.getElementById('one')
+        // 2.3把名字给one
+        one.innerText = personArr[random]
+        // 2.4从数组中删除该名
+        personArr.splice(random, 1)
+        // 显示剩余名额
+        console.log(personArr)
+
+        // 获取Two元素
+        const random2 = Math.floor(Math.random() * personArr.length)
+        const two = document.getElementById('two')
+        two.innerText = personArr[random2]
+        personArr.splice(random2, 1)
+        console.log(personArr)
+
+        // 获取Three元素
+        const random3 = Math.floor(Math.random() * personArr.length)
+        const three = document.getElementById('three')
+        three.innerText = personArr[random3]
+        personArr.splice(random3, 1)
+        console.log(personArr)
+    </script>
+</body>
+</html>

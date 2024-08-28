@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      uname: 'pink',
+      age: 18,
+      hobby: ['乒乓球', '足球'],
+      family: {
+        baby: '小pink'
+      }
+    }
+    const o = {}
+
+    // 拷贝函数
+    function deepCopy(newObj, oldObj) {
+      debugger  // 断点调试
+      for (let k in oldObj) {
+        // console.log('this is k:', k)
+        // console.log('this is oldObj[k]:', oldObj[k])
+
+        // 处理bug: 因为数组也属于对象, 故必须先写 数组, 筛掉后 再写 对象, 不能颠倒, 否则会把 数组转化成对象
+
+        // bug 1: 引用类型-数组—————————————————————————————————————————————
+        if (oldObj[k] instanceof Array) {
+          // 重点 ↓↓↓
+          // 初次遍历到 hobby, k为 属性名 'hobby', oldObj[k] 为 (整个)数组hobby: ['乒乓球', '足球']
+          // 回调遍历到 hobby, k为 数组索引号: 0、1, oldObj[k] 为 数组hobby中的元素: '乒乓球'、'足球'
+          // 回调遍历到 hobby 后, oldObj[k]不再是数组, 故执行 else {}（简单类型直接赋值）
+
+          // 1. 先为其赋一个 空数组, 利用 后续遍历 赋值
+          newObj[k] = []
+          // 2. 回调
+          deepCopy(newObj[k], oldObj[k])
+        }
+        
+        // bug 2: 引用类型-对象————————————————————————————————————————————————————
+        else if (oldObj[k] instanceof Object) {
+          // 原理同上
+          newObj[k] = {}
+          deepCopy(newObj[k], oldObj[k])
+        }
+
+        // 简单类型，直接赋值———————————————————————————————————————
+        else {
+          // k: 属性名; oldObj[k]: 属性值。
+          // 此处 newObj[k] 等价于 o.uname、o.age ...
+          newObj[k] = oldObj[k]
+        }
+      }
+    }
+    deepCopy(o, obj) // 函数调用  两个参数 o 新对象  obj 旧对象
+
+    // 测试
+    console.log(o)  
+
+    o.age = 20
+    o.hobby[0] = '篮球'
+    o.family.baby = '老pink'
+
+    console.log(obj)
+    console.log([1, 23] instanceof Object)
+
+    // 复习
+    // const obj = {
+    //   uname: 'pink',
+    //   age: 18,
+    //   hobby: ['乒乓球', '足球']
+    // }
+
+    // 要点
+    // function deepCopy({ }, oldObj) {
+    //   for (let k in oldObj) {
+
+    //     // 处理数组的问题: k 是一个变量, 该如何赋值？
+    //     newObj[k] = oldObj[k]  // 使用中括号: 正确！具体表现举例: newObj['uname'] = oldObj['uname']
+    //     // newObj.k  = 'pink'  // 使用'.': 错误！这种写法会变成为 newObj 添加一个新属性 k
+    //     // o.uname = 'pink'  // 关于'.'的平常用法(不能用于赋值)正确示例: 修改 o 的 uname属性 的值
+    //   }
+    // }
+
+    // 总结：面试回答
+    // 1. 深拷贝是 的目标是: 拷贝的新对象 与 旧对象 互不影响
+    // 2. 使用函数递归
+    // 3. 简单类型 直接赋值
+    // 4. 数组类型 回调即可，同时筛掉数组
+    // 5. 对象类型 再一次回调
+    // 6. 过程中注意: 因为数组是特殊的对象, 必须先筛掉数组, 再处理对象
+  </script>
+</body>
+
+</html>

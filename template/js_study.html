@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pink {
+            background-color: pink;
+        }
+        h2 {
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;  /* 合并相邻边框 */
+            height: 40px;
+            margin: 0 auto;
+        }
+        table, th, td {
+            border: 1px  solid black;
+        }
+        th {
+            padding: 5px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <button class="pink">按钮1</button>
+        <button>按钮2</button>
+        <button>按钮3</button>
+        <button>按钮4</button>
+    </div>
+
+    <script>
+        let bts = document.querySelectorAll('button')
+        for (let i = 0; i < bts.length; i++) {
+            bts[i].addEventListener('click', function () {
+                document.querySelector('.pink').className = ''
+                this.className = 'pink'
+            })
+        }
+    </script>
+</body>
+</html>

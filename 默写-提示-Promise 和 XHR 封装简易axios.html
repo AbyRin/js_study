@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 默写：Promise 和 XHR 封装简易axios -->
+    <script>
+        // 思路：
+        // （1）使用 Promise 和 XHR 封装 简易axios函数
+        // （2）使用 URLSearchParams API 实现传递 查询函数（先转为对象，再转为查询字符串）
+        // （3）判断data选项，实现传递 请求体数据（转为 json 字符串，xhr设置请求头）
+
+        function myAxio(config) {
+            return new Promise((ressolve, reject) => {
+                
+                // 发起xhr请求
+                const xhr = XMLHttpRequest()
+
+                // 存在查询参数
+                if (conifg.params) {
+                    const queryStr = new URLSearchParams(config.params).toString()
+                    config.url += `?${queryStr}`
+                }
+
+                xhr.open(cofig.method || "get", config.url)
+                xhr.addEventListener("loadend", () => {
+                    // 处理成功/失败结果
+                    if (xhr.status >= 200 && xhr.satus < 300) {
+                        resolve(xhr.resonse)
+                    } else {
+                        reject(xhr.response)
+                    }
+                })
+
+                // 存在请求体数据
+                if (config.data) {
+                    // 转化为json字符串
+                    const jsonStr = JSON.stringify(config.data)
+                    // 原生xhr设置请求头
+                    xhr.setRequestHeader("Content-Type", "application/json")
+                    xhr.send(jsonStr)
+                } else {
+                    send()
+                }
+            })
+        }
+        
+    </script>
+</body>
+</html>

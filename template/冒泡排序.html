@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </title>Bubble</title>
+</head>
+<body>
+    <script>
+        // 冒泡排序
+        // 案例: 从小到大排序
+        let arr = [2, 6, 78, 30, 52]
+        // 1. 外层循环控制比较轮数
+        for (let i = 0; i < arr.length - 1; i++) {  // n个数据走n-1躺
+            // 2. 内层循环控制每轮比较次数， 为数组长度减去次数, 此外因为从0开始, 还要-1
+            for (let j = 0; j < arr.length - 1 - i; j++) {
+                // 3. 比较相邻两个元素的大小
+                if (arr[j] > arr[j + 1]) {
+                    // 4. 如果前一个元素大于后一个元素, 则交换两个元素的位置
+                    let temp = arr[j]
+                    arr[j] = arr[j + 1]
+                    arr[j + 1] = temp
+                }
+            }
+        }
+        console.log(arr)
+    </script>
+    <script>
+        arr.sort(函数)  // 会改变原始数组
+        arr.reverse()  // 反转排序
+
+        // 默认按字母、数字顺序
+        arr.sort()
+
+        // 升序, 获取最小值(数组中的第一项)
+        arr.sort(function (a, b) {
+            return a - b
+        })
+    
+        // 降序, 获取最大值(数组中的第一项)
+        arr.sort(function (a, b) {
+            return b - a
+        })
+
+    </script>
+</body>
+</html>

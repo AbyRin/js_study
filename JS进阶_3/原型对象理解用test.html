@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Parent(name) {
+        this.name = name;
+    }
+
+    Parent.prototype.sayName = function() {
+        console.log(`My name is ${this.name}.`);
+    }
+
+    // 构造函数继承 ----------------------------------------------------------------
+    function Child(name, age) {
+        Parent.call(this, name); // 调用 父类构造函数 来 初始化父类的属性，可以直接实现 子构造函数对 父构造函数 属性 的继承
+        this.age = age;
+    }
+
+    Child.prototype = Object.create(Parent.prototype);
+    Child.prototype.constructor = Child;
+    Child.prototype.sayAge = function() {
+        console.log(`I am ${this.age} years old.`);
+    }
+
+    let child = new Child("Tom", 10);
+    child.sayName();
+    child.sayAge();
+
+    
+    // 原型继承 --------------------------------------------------------------------
+    function Child2(name, age) {
+        this.name = name;  // 更加轻量，但不会自动初始化 父构造函数的属性
+        this.age = age;
+    }
+
+    Child2.prototype = Object.create(Parent.prototype);
+    Child2.prototype.constructor = Child;
+    Child2.prototype.sayAge = function() {
+        console.log(`I am ${this.age} years old.`);
+    }
+
+    let child2 = new Child2("Tom", 10);
+    child2.sayName();
+    child2.sayAge();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        .div_test {
+            overflow: scroll;
+
+            width: 200px;
+            height: 200px;
+        }
+        .div_top {
+            display: none;
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+    <script>
+        // scrollTop, scrollTLeft 属性, 可读写
+        document.documentElement.scrollTop = 800  // 页面一打开就卷走 800 像素(竖直)
+
+        // scrollTo(), 使页面滚动到指定位置
+        window.scrollTo(x, y)
+        
+        // const btn = document.querySelector('button')
+        // btn.addEventListener('click', function() {
+        //     alert('aby')
+        // })
+
+        // 例: 等待页面所有资源加载完毕, 就回去执行回调函数
+        window.addEventListener('load', function(){
+            const btn = document.querySelector('button')
+            btn.addEventListener('click', function() {
+                alert('aby')
+            })
+        })
+
+        // 例2: 等待 img 加载完毕, 再加载后面的代码
+        // img.addEventListener('load', function() {
+        //     console.log('图片加载完毕')
+        // })
+
+
+        //  DOMContentLoaded 事件
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.querySelector('button')
+            btn.addEventListener('click', function() {
+                alert('aby')
+            })
+        })
+
+
+        // 语法
+        window.addEventListener('scroll', function() {
+            // console.log('滚起来了')
+
+            // 求页面滚动像素
+            console.log(document.documentElement.scrollTop)
+
+            // 获取 body 元素
+            document.body
+            // 获取 html 元素
+            document.documentElement
+        })
+
+        // 页面滚动100像素时,蓝色方块出现
+        window.addEventListener('scroll', function() {
+            const div_top = document.querySelector('.div_top')
+            const n = document.documentElement.scrollTop  // 得到数字型, 不带单位
+            if (n >= 100) {
+                div_top.style.display = 'block'
+            }
+        })
+    </script>
+</head>
+
+<body>
+    <button>点击</button>
+
+    <div class="div_test">
+        <p>我里面有很多文字</p>
+        <p>我里面有很多文字</p>
+        <p>我里面有很多文字</p>
+        <p>我里面有很多文字</p>
+        <p>我里面有很多文字</p>
+        <p>我里面有很多文字</p>
+        <p>我里面有很多文字</p>
+        <p>我里面有很多文字</p>
+        <p>我里面有很多文字</p>
+        <p>我里面有很多文字</p>
+    </div>
+
+    <div class="div_top"></div>
+
+    <script>
+        const div_t = document.querySelector('.div_test')
+        div_t.addEventListener('scroll', function() {
+            // console.log('123')
+            console.log(div_t.scrollTop)
+        })
+    </script>
+</body>
+</html>

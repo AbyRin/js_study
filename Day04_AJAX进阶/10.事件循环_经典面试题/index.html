@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件循环经典_经典面试题</title>
+</head>
+
+<body>
+  <script>
+    // 目标：回答代码执行顺序
+    console.log(1)  // （1）同步代码，此时结果：1
+
+    setTimeout(() => {  // （2）计时器，进入宿主环境，再进宏任务排队（暂不执行）；此时结果：1
+      console.log(2)  // （10）调用宏任务，此时结果：1 7 5 6 2
+      const p = new Promise(resolve => resolve(3))
+      p.then(result => console.log(result))  // （11）then()为异步微任务，且此时该promise状态已改变 resolved(3)，故进入微任务排队；此时结果：1 7 5 6 2
+      //（12）调用微任务，此时结果：1 7 5 6 2 3；微任务再次清空，调用宏任务
+    }, 0)
+
+    const p = new Promise(resolve => {  //（3）promise 同步，立刻调用，内部回调也立刻调用；此时结果：1
+      setTimeout(() => {  // （4）计时器，进入宿主环境，再进宏任务排队（暂不执行）；此时结果：1
+        console.log(4)  //（13）调用最后一个宏任务，此时结果：1 7 5 6 2 3 4，结束
+      }, 0)
+      resolve(5)
+    })
+
+    p.then(result => console.log(result))  // （5）then()为异步微任务，且此时该promise状态已改变 resolved(5)，故进入微任务排队；此时结果：1
+    // （8）调用微任务，此时结果：1 7 5
+
+    const p2 = new Promise(resolve => resolve(6))
+
+    p2.then(result => console.log(result))  // （6）then()为异步微任务，且此时该promise状态已改变 resolved(6)，故进入微任务排队；此时结果：1
+    // （9）调用微任务，此时结果：1 7 5 6；微任务结束，开始调用宏任务
+
+    console.log(7)  // （7）同步代码，此时结果：1 7；同步代码结束，开始调用异步（先微，后宏）
+
+    // 自写：1 7 2 4 3 5 6
+    // 正解：1 7 5 6 2 3 4 
+  </script>
+
+</body>
+
+</html>

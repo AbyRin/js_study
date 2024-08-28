@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        .nav {
+            color: green;
+            font-size: 50px;
+        }
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(124, 160, 253);
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">123</div>
+    <script>
+        // 元素.className = 'CSS类名'
+
+        // 通过 类名(className) 操作CSS
+        const div = document.querySelector('div');
+        // 添加类名, 由于 class 是关键字, 应用 className 去代替
+
+        // className 是使用新值 [替换] 旧值, 如果需要添加类（样式）, 需要保留之前的类名
+        div.className = 'box';  // nav样式 消失
+        div.className = 'nav box';  //nav 和 box 都存在
+    </script>
+</body>
+</html>

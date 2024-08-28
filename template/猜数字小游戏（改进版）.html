@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 随机生成数字
+        function getRandom(N, M) {
+            return Math.floor(Math.random() * (M - N + 1)) + N
+        }
+        let random = getRandom(1, 10)
+        console.log(random)
+
+        // 设定三次机会, 三次没猜对就退出
+        let flag = true  // 开关变量
+        for (let i = 1; i <= 3; i++) {
+            let num = +prompt('请输入介于 1~10 的数字')
+
+            // 判断
+            if (num > random) {
+                alert('猜大了, 继续')
+            } else if (num < random) {
+                alert('猜小了, 继续')
+            } else {
+                flag = false  // 关键: 猜中时, 改变flag, 阻止显示“三次条件已用完”
+                alert('猜对了, 牛逼')
+                break  // 退出
+            }
+        }
+
+        if (flag) {
+            alert('三次机会已用完')
+        }
+    </script>
+</body>
+</html>

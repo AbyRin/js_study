@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>面向对象封装消息提示</title>
+  <style>
+    .model {
+      width: 300px;
+      min-height: 100px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      position: fixed;
+      z-index: 999;
+      left: 50%;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      background-color: #fff;
+    }
+
+    .model .header {
+      line-height: 40px;
+      padding: 0 10px;
+      position: relative;
+      font-size: 20px;
+    }
+
+    .model .header i {
+      font-style: normal;
+      color: #999;
+      position: absolute;
+      right: 15px;
+      top: -2px;
+      cursor: pointer;
+    }
+
+    .model .body {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .model .footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+    }
+
+    .model .footer a {
+      padding: 3px 8px;
+      background: #ccc;
+      text-decoration: none;
+      color: #fff;
+      border-radius: 2px;
+      margin-right: 10px;
+      font-size: 14px;
+    }
+
+    .model .footer a.submit {
+      background-color: #369;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="delete">删除</button>
+  <button id="login">登录</button>
+  <button id="logon">注册</button>
+
+  <!-- 弹出信息 -->
+  <!-- <div class="model">
+    <div class="header">温馨提示 <i>x</i></div>
+    <div class="body">您没有删除权限操作</div>
+  </div> -->
+
+
+  <script>
+    // 1.  模态框的构造函数
+    function Modal(title = '', message = '') {
+      // 公共的属性部分
+      this.title = title
+      this.message = message
+      // 1. 创建 div 标签
+      this.modelBox = document.createElement('div')
+      // 2. 添加 model 类名
+      this.modelBox.className = 'model'
+      // 3. 填充内容 更换数据
+      this.modelBox.innerHTML = `
+        <div class="header">${this.title} <i>x</i></div>
+        <div class="body">${this.message}</div>
+      `
+      // console.log(this.modelBox)
+    }
+
+    // 2. open 方法 挂载到 model 的构造函数原型上, 使得所有 实例对象 都可以使用该方法
+    Modal.prototype.open = function () {
+      // 注意: 该方法不要使用箭头函数, 因为需要用到 this（箭头函数 this 与上一级作用域的 this 指向相同）
+      if (!document.querySelector('.model')) {  // 解决bug: 多次点击能重复显示 model
+        // 把刚才创建的盒子 modelBox 渲染到 页面中。父元素.appendChild(子元素)
+        document.body.appendChild(this.modelBox)
+
+        // 获取 x 调用关闭方法
+        this.modelBox.querySelector('i').addEventListener('click', () => {
+          // 注意: 此处箭头函数 this 指向 上一级, 即model, 正好是要调用 close()函数 以关闭的目标dom
+          this.close()
+        })
+      }
+    }
+
+    // 3. close 方法 挂载到 model 的构造函数原型上
+    Modal.prototype.close = function () {
+      document.body.removeChild(this.modelBox)
+    }
+
+    // 4. 删除 按钮点击
+    document.querySelector('#delete').addEventListener('click', () => {
+      const del = new Modal('温馨提示', '您没有权限删除')
+      // 调用 打开方法
+      del.open()
+    })
+
+    // 5. 登录 按钮点击
+    document.querySelector('#login').addEventListener('click', () => {
+      const login = new Modal('友情提示', '您还么有注册账号')
+      // 调用 打开方法
+      login.open()
+    })
+
+    // 5. 登录 按钮点击
+    document.querySelector('#logon').addEventListener('click', () => {
+      const login = new Modal('注意', '你不准参加开发者大会！')
+      // 调用 打开方法
+      login.open()
+    })
+
+  </script>
+</body>
+
+</html>

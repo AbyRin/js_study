@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            width: 80px;
+            height: 60px;
+            background-color: pink;
+            margin: 0;
+            margin-block: 0;
+            padding: 0;
+        }
+        ul li {
+            width: 80px;
+            height: 20px;
+            background-color: rgb(254, 214, 67);
+            list-style-type: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="div_a">
+        <div class="div_b" data-name="class_1">1</div>
+        <div class="div_b" data-name="class_2">2</div>
+        <div class="div_b" data-name="class_3">3</div>
+    </div>
+
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+    <script>
+        const ele = document.querySelector('.div_b');
+        console.log(ele.dataset.name)
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // function Objetc() {}  // 天然存在, 最大的对象, 即 “祖”
+    console.log(Object.prototype)  // Object.prototype, Object 的 原型对象 当然也是一个对象
+    console.log(Object.constructor)  // funcition Object 本身
+    console.log(Object.prototype.__proto__)  // null, Object 为最大对象
+
+    function Person() {
+
+    }
+    const someone = new Person()
+    console.log(someone.__proto__ === Person.prototype)  // true, 弟 --> 兄
+    console.log(Person.prototype.__proto__ === Object.prototype)  // true, 兄 --> 祖
+
+    // intanceOf 运算符: 检测 构造函数 的 prototype属性 是否出现在某个 实例对象的原型链 上
+    console.log(someone instanceof Person)  // true
+    console.log(someone instanceof Object)  // true
+    console.log(someone instanceof Array)   // false, someone 是对象而不是数组
+    console.log([1, 2, 3] instanceof Array) // true
+    console.log(Array instanceof Object)    // true, 数组是特殊的对象
+
+  </script>
+</body>
+
+</html>

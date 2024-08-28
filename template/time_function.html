@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 开启定时器
+        // setInterval(函数, 间隔时间)
+        // 作用: 每隔一段时间调用该函数
+        // 间隔时间 的单位是 毫秒
+
+        // setInterval (function() {
+        //     console.log('每隔1s执行一次');
+        // }, 1000);
+
+        // 另一种写法, setInterval(函数名, 间隔时间)
+        // 1.构造函数
+        function fn() {
+            console.log('每隔1s执行一次');
+        }
+        // 2.定时器
+        let n = setInterval (fn, 1000)  // 自动调用函数 应写函数名(不加括号)
+        console.log(n);
+
+        let m = setInterval (function() {
+            console.log('每隔2s执行一次')
+        }, 2000)
+        console.log(m);
+
+        // 关闭/清除定时器
+        // let 变量名 = setInterval (函数, 间隔时间)  // 定时器变量名会改变, 故用 let
+        // clearInterval(变量名)
+        // Tip: 定时器返回一个id
+
+        // 练习
+        let i = 1
+        setInterval (function() {
+            i++
+            document.write(i)
+        }, 1000)
+    </script>
+</body>
+</html>

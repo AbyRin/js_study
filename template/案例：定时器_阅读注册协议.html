@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea name="" id="" cols="30" rows="10">
+        用户注册协议
+        欢迎注册称为京东用户！在您注册过程中.....如果您不同意该协议......over。
+    </textarea>
+    <br>
+    <button class="btn" disabled>我已经阅读用户协议(5)</button>
+
+    <script>
+        // 案例: 阅读注册协议-倒计时
+        // 1.一开始先禁用 “已阅读” 按钮，等倒计时结束后才可以点击
+        // 2.按钮中的文字会随倒计时变化
+        
+        // 1.获取元素
+        const btn = document.querySelector('.btn')
+        // console.log(btn.innerHTML)
+
+        // 2.倒计时
+        let t = 5
+        // 开启定时器
+        let time = setInterval (function() {
+            t--
+            btn.innerHTML = `我已经阅读用户协议(${t})`
+            // 判断倒计时为0时停止计时
+            if (t === 0) {
+                clearInterval(time)  // 关闭定时器
+                // 此时可以启用按钮
+                btn.disabled = false
+                btn.innerHTML = '我已经阅读用户协议'
+            }
+        }, 1000)
+    </script>
+</body>
+</html>

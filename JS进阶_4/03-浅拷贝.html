@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      uname: 'pink',
+      age: 18,
+      family: {
+        baby: '小pink'
+      }
+    }
+
+    // 浅拷贝
+    // const o = { ...obj }  // 展开运算符
+    // console.log(o)  // { uname: 'pink', age: 18, family: { baby: '小pink' } }
+
+    // o.age = 20
+    // console.log(o)  // { uname: 'pink', age: 20, family: { baby: '小pink' } }
+    // console.log(obj)  // { uname: 'pink', age: 18, family: { baby: '小pink' } }
+
+    const o = {}
+    Object.assign(o, obj)
+    // 一旦遇到里层对象，又是 只拷贝地址 而 不拷贝对象，进而导致 原对象被修改
+    // 此处只拷贝了 family（指向baby）的地址
+    o.family.baby = '新pink'
+    console.log(o)  // { uname: 'pink', age: 18, family: { baby: '新pink' } }
+    console.log(obj)  // { uname: 'pink', age: 18, family: { baby: '新pink' } }
+  </script>
+</body>
+
+</html>

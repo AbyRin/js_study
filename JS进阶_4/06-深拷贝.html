@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 原对象
+    const object = {
+        name: 'aby',
+        age: 18,
+        say() {
+            console.log('hello')
+        },
+        arr: [[1, 2], 3, 4],
+        family: {
+            father: 'dad',
+        }
+    }
+    const objNew = {}
+
+    // 递归实现 深拷贝
+    function deepCopy(newObj, oldObj) {
+      for (let k in oldObj) {
+        if (oldObj[k] === null || typeof oldObj[k] !== 'object') {
+          newObj[k] = oldObj[k];
+        } else if (oldObj[k] instanceof Array) {
+          newObj[k] = [];
+          deepCopy(newObj[k], oldObj[k]);
+        } else if (oldObj[k] instanceof Object) {
+          newObj[k] = {};
+          deepCopy(newObj[k], oldObj[k]);
+        }
+      }
+    }
+    deepCopy(objNew, object)
+
+    // 测试
+    objNew.family.father = 'daddy'  // 修改新对象的属性值
+
+    console.log(object.family.father)  // dad
+    console.log(objNew.family.father)  // daddy
+
+    
+    // 总结：面试回答
+    // 1. 深拷贝的目标是: 创建一个独立的副本，确保新对象与原始对象在内存中不会 互相影响。
+    //                    这在 处理对象的嵌套结构和引用关系中 能确保数据的安全性。
+    // 2. 使用函数递归
+    // 3. 简单类型 直接赋值
+    // 4. 然后 数组类型 回调，同时筛掉数组
+    // 5. 最后 对象类型 再一次回调 即可
+    // 6. 过程中注意: 因为数组是特殊的对象, 必须先筛掉数组, 再处理对象
+  </script>
+</body>
+
+</html>

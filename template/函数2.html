@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="#" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+
+            background-color: #ffa5a5;
+            margin: 50px auto;
+            
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+
+    <script>
+        // 求最大值函数
+        function getMax(x, y) {
+            return x > y ? x : y
+        }
+        let max = getMax(1, 2)
+
+
+        // 求任意数组的最大值, 最小值
+        function getArrValue(arr = []) {
+            // 准备 max 变量存放数组的第一个值
+            let max = arr[0]
+            let min = arr[0]
+            // 遍历比较
+            for (let i = 1; i < arr.length; i++) {
+                if (max < arr[i])
+                max = arr[i]
+                if (min > arr[i])
+                min = arr[i]
+            }
+            // 返回值
+            return [max, min]
+        }
+        let ArrMaxMin = getArrValue([1, 2, 3, 4, 5])
+
+        console.log(`数组的最大值是${ArrMaxMin[0]}, 最小值是${ArrMaxMin[1]}`)
+
+        const div = document.querySelector('div')
+        div.innerHTML = ArrMaxMin
+
+        // 函数细节 和 断点进入函数
+        
+    </script>
+</body>
+</html>

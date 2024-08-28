@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+
+  <script>
+    
+    // 4. Array.from(): 把伪数组转换为真数组
+    // Array.from(lis) 把伪数组转换为真数组
+    const lis = document.querySelectorAll('ul li')
+    console.log(lis)  // NodeList, 此时lis是一个类似数组的对象而非真数组，因此不能用数组的方法
+
+    // lis.pop() 删除数组最后一个元素
+    const liss = Array.from(lis)
+    liss.pop()
+    console.log(liss)
+
+  </script>
+</body>
+
+</html>
